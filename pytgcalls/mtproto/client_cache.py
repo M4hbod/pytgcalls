@@ -42,8 +42,8 @@ class ClientCache:
                     full_chat,
                 )
                 return full_chat
-            except Exception:
-                pass
+            except Exception as e:
+                py_logger.debug('Error for %s in %d', e, chat_id)
         return None
 
     def set_participants_cache(

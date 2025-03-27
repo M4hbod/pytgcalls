@@ -1,4 +1,5 @@
 import json
+import logging
 from typing import Dict
 from typing import List
 from typing import Optional
@@ -64,6 +65,8 @@ from ..types import UpdatedGroupCallParticipant
 from .bridged_client import BridgedClient
 from .client_cache import ClientCache
 
+
+py_logger = logging.getLogger(__name__)
 
 class HydrogramClient(BridgedClient):
     def __init__(
@@ -318,6 +321,7 @@ class HydrogramClient(BridgedClient):
                 )
             ).full_chat.call
 
+        py_logger.debug("input_call: %s", input_call)
         if input_call is not None:
             call: GroupCall = (
                 await self._app.invoke(
